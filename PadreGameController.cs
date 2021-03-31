@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class PadreGameController : MonoBehaviour
 {
     [SerializeField]
@@ -34,7 +34,7 @@ public class PadreGameController : MonoBehaviour
     }
 
 
-    private void Start()
+    virtual public void Update()
     {
         if (Active60Frames)
         {
@@ -44,7 +44,12 @@ public class PadreGameController : MonoBehaviour
         {
             Application.targetFrameRate = 30;
         }
-        Debug.Log(Points);
+        
+        if (Fail && Input.anyKey)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
+       
     }
 
 
